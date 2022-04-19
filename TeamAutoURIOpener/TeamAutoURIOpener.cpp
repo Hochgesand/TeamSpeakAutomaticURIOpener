@@ -38,7 +38,7 @@ json loadedConfig;
 const std::string filename{ "settings.json" };
 std::thread teamspeakConnectorWS;
 
-void printBufferToConsole(std::shared_ptr<beast::flat_buffer> buffer)
+void printBufferToConsole(const std::shared_ptr<beast::flat_buffer>& buffer)
 {
 	std::cout << beast::make_printable(buffer->data()) << "\n";
 };
@@ -50,7 +50,7 @@ void playByUriOnSpotify(std::string spotifyUri)
 	ShellExecute(0, 0, wideString, 0, 0, SW_SHOW);
 }
 
-int connectToTeamspeak(std::function<void(std::shared_ptr<beast::flat_buffer>)> callback)
+int connectToTeamspeak(const std::function<void(std::shared_ptr<beast::flat_buffer>)>& callback)
 {
     teamspeakConnectorWS = std::thread{
         [callback]()
@@ -60,11 +60,8 @@ int connectToTeamspeak(std::function<void(std::shared_ptr<beast::flat_buffer>)> 
 				int isFirstPacket = 0;
 		        auto const host = "localhost";
 		        auto const port = "5899";
-
-		        // The io_context is required for all I/O
+				
 		        net::io_context ioc;
-
-		        // These objects perform our I/O
 		        tcp::resolver resolver{ ioc };
 		        websocket::stream<tcp::socket> ws{ ioc };
 
@@ -195,7 +192,6 @@ void saveNewApiKey(std::string const& key)
 	}
 }
 
-// Sends a WebSocket message and prints the response
 int main(int argc, char** argv)
 {
 	checkForExistingConfiguration();
