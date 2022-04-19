@@ -22,7 +22,7 @@ const auto initRequest = R"(
 {
   "type": "auth",
   "payload": {
-    "identifier": "cock.balltorture",
+    "identifier": "schmitz.gg",
     "version": "0",
     "name": "Teamspeak Automatic Spotify musicplayer",
     "description": "An automatic spotify uri injector",

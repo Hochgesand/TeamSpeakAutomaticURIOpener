@@ -1,3 +1,3 @@
 # TeamSpeakAutomaticURIOpener
 moo
-¯\_ (ツ)_/¯
+¯\\_ (ツ)_/¯
